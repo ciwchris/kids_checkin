@@ -1,10 +1,10 @@
 <div>
   <ul>
-    <li id="red"><%= count("red", @classes) %></li>
-    <li id="orange"><%= count("orange", @classes) %></li>
-    <li id="yellow"><%= count("yellow", @classes) %></li>
-    <li id="green"><%= count("green", @classes) %></li>
-    <li id="blue"><%= count("blue", @classes) %></li>
-    <li id="purple"><%= count("purple", @classes) %></li>
+    <li><div id="red" style="background-color:red"><%= count("red", @classes) %></div></li>
+    <li><div id="orange" style="background-color:orange"><%= count("orange", @classes) %></div></li>
+    <li><div id="yellow" style="background-color:yellow"><%= count("yellow", @classes) %></div></li>
+    <li><div id="green" style="background-color:green"><%= count("green", @classes) %></div></li>
+    <li><div id="blue" style="background-color:blue"><%= count("blue", @classes) %></div></li>
+    <li><div id="purple" style="background-color:purple"><%= count("purple", @classes) %></div></li>
   </ul>
 </div>

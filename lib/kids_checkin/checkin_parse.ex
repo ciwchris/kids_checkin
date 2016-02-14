@@ -42,7 +42,7 @@ defmodule KidsCheckin.CheckinParse do
     url = "https://api.onthecity.org/checkins?page=" <> to_string(page)
     time = :os.system_time(:milli_seconds)
     signed = :crypto.hmac(:sha256, Application.get_env(:kids_checkin, :thecity_secret_key), "#{time}GET#{url}") |> Base.encode64 |> URI.encode_www_form
-    response = HTTPoison.get!(url, [{"X-City-Sig", signed}, {"X-City-User-Token", Application.get_env(:kids_thecity_checkin, :user_token)},{"X-City-Time", time},{"Accept", "application/vnd.thecity.admin.v1+json"}])
+    response = HTTPoison.get!(url, [{"X-City-Sig", signed}, {"X-City-User-Token", Application.get_env(:kids_checkin, :thecity_user_token)},{"X-City-Time", time},{"Accept", "application/vnd.thecity.admin.v1+json"}])
     {_, checkins} = decode response.body
 
     checkins["checkins"]

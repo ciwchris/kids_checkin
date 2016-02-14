@@ -9,7 +9,7 @@ use Mix.Config
 config :kids_checkin, KidsCheckin.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "zUakUuUS517UUWUw+6q4mbmig8fm5ToWy8CyCrp0NPdLKkQYDgjpUTq7650hJ785",
+  secret_key_base: "W+X/g7q/I2yXN6GoduZ310BYKsMVULyQhdEOIVKWIsTx2pZNfY6e70a4OIRXHhlB",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: KidsCheckin.PubSub,
            adapter: Phoenix.PubSub.PG2]

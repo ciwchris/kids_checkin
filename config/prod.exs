@@ -19,7 +19,8 @@ config :kids_checkin, KidsCheckin.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 config :kids_checkin, :thecity_secret_key, System.get_env("THECITY_SECRET_KEY")
-config :kids_checkin, :thecity_user_key, System.get_env("THECITY_USER_KEY")
+config :kids_checkin, :thecity_user_token, System.get_env("THECITY_USER_TOKEN")
+config :kids_checkin, :thecity_test, System.get_env("THECITY_TEST")
 
 # Do not print debug messages in production
 config :logger, level: :info

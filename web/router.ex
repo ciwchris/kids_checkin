@@ -23,5 +23,7 @@ defmodule KidsCheckin.Router do
     pipe_through :api
 
     get "newcheckin", WebHookController, :index
+
+    post "newcheckin", WebHookController, :index
   end
 end
