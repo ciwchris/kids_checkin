@@ -50,7 +50,7 @@ defmodule KidsCheckin.CheckinParse do
 
   def formatKids(kids) do
     [
-      %{"id" => 108117, "color" => "red", "count" => getCounts(kids, 108117), "max" => 12, "name" => "Nursery"},
+      %{"id" => 108117, "color" => "red", "count" => getCounts(kids, 108117), "max" => 1, "name" => "Nursery"},
       %{"id" => 108119, "color" => "orange", "count" =>getCounts(kids, 108119), "max" => 12, "name" =>  "Toddlers"},
       %{"id" => 108120, "color" => "yellow", "count" =>getCounts(kids, 108120), "max" => 12, "name" =>  "Preschool #1"},
       %{"id" => 144673, "color" => "green", "count" =>getCounts(kids, 144673), "max" => 12, "name" =>  "Preschool # 2"},
