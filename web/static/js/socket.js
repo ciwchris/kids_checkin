@@ -59,7 +59,14 @@ let channel = socket.channel("checkins:count", {})
 channel.on("count_update", payload => {
     var classes = JSON.parse(payload.classes);
     for (var i = 0; i < classes.length; i++) {
-        $('#'+ classes[i].color).text(classes[i].count);
+        if (isNaN($('#'+ classes[i].color).text())) {
+            var text = classes[i].count < classes[i].max
+                ? "Open"
+                : "Full";
+            $('#'+ classes[i].color).text(text);
+        } else {
+            $('#'+ classes[i].color).text(classes[i].count);
+        }
     }
 })
 
