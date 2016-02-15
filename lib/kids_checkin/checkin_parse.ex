@@ -9,13 +9,14 @@ defmodule KidsCheckin.CheckinParse do
   end
 
   defp liveResults(kids, page) do
-    newKids = Enum.filter(getCheckinsPage(page), fn checkin -> isToday(checkin["event"]["starting_at"]) end) |>
-      Enum.map(fn checkin -> {checkin["barcode"], checkin["group"]["id"]} end) |>
-      Enum.into(kids)
+    newKids = Enum.filter(getCheckinsPage(page), fn checkin -> isToday(checkin["checked_in_at"]) end) |>
+      Enum.map(fn checkin -> {checkin["barcode"], checkin["group"]["id"]} end)
+    allKids = Enum.into(newKids, kids)
 
-    case Map.keys(newKids) |> Enum.count do
-      x when x == 20 * page -> parse(newKids, (page + 1))
-      _ -> updateCache newKids
+    case Enum.count(newKids) do
+      0 -> formatKids(kids)
+      20 -> parse(allKids, (page + 1))
+      _ -> updateCache allKids
     end
   end
 
@@ -44,7 +45,6 @@ defmodule KidsCheckin.CheckinParse do
     signed = :crypto.hmac(:sha256, Application.get_env(:kids_checkin, :thecity_secret_key), "#{time}GET#{url}") |> Base.encode64 |> URI.encode_www_form
     response = HTTPoison.get!(url, [{"X-City-Sig", signed}, {"X-City-User-Token", Application.get_env(:kids_checkin, :thecity_user_token)},{"X-City-Time", time},{"Accept", "application/vnd.thecity.admin.v1+json"}])
     {_, checkins} = decode response.body
-
     checkins["checkins"]
   end
 
