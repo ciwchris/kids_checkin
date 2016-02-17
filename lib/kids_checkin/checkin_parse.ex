@@ -9,15 +9,17 @@ defmodule KidsCheckin.CheckinParse do
   end
 
   defp liveResults(kids, page) do
-    newKids = Enum.filter(getCheckinsPage(page), fn checkin -> isToday(checkin["checked_in_at"]) end) |>
-      Enum.map(fn checkin -> {checkin["barcode"], checkin["group"]["id"]} end)
-    allKids = Enum.into(newKids, kids)
+    newKids = Enum.filter(getCheckinsPage(page), fn checkin -> isToday(checkin["checked_in_at"]) end)
 
-    case Enum.count(newKids) do
-      0 -> formatKids(kids)
-      20 -> parse(allKids, (page + 1))
-      _ -> updateCache allKids
+    cond do
+      Enum.count(newKids) == 0 -> formatKids(kids)
+      !Map.has_key?(kids, hd(Enum.reverse newKids)["barcode"]) -> parse(mapKids(newKids, kids), (page + 1))
+      true -> updateCache mapKids(newKids, kids)
     end
+  end
+
+  defp mapKids(newKids, kids) do 
+    Enum.reduce(newKids, kids, fn(checkin, acc) -> Map.put_new(acc, checkin["barcode"], checkin["group"]["id"]) end)
   end
 
   defp updateCache(newKids) do
@@ -27,14 +29,14 @@ defmodule KidsCheckin.CheckinParse do
 
   defp testResults(kids, page) do
     test = """
-    {"checkins":[
-    {"group":{"id":108117},"event":{"starting_at":"02/07/2016 05:00 PM (GMT)"},"barcode":"9C002D3D64"},
-    {"group":{"id":108117},"event":{"starting_at":"02/07/2016 05:00 PM (GMT)"},"barcode":"6C002D3D64"}
-    ]}
+    [
+    {"group":{"id":108117},"barcode":"9C002D3D64"},
+    {"group":{"id":108117},"barcode":"6C002D3D64"}
+    ]
     """
     {_, checkins} = decode test
-    newKids = checkins["checkins"] |> Enum.map(fn checkin -> {checkin["barcode"], checkin["group"]["id"]} end) |>
-      Enum.into(kids)
+
+    newKids = mapKids(checkins, kids)
     LruCache.update(:my_cache, "kids", newKids, touch = false)
     formatKids(newKids)
   end
