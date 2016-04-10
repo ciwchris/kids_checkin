@@ -33,6 +33,22 @@ li > div {
     box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.075) inset;
 }
 
+#left {
+    border-radius: 7px 0 0 7px;
+    min-width: 100px;
+    width: 100px;
+    padding-right: 0;
+    text-align: right;
+}
+
+#right {
+    border-radius: 0 7px 7px 0;
+    min-width: 100px;
+    width: 100px;
+    padding-left: 0;
+    text-align: left;
+}
+
 div.box {
     width: 100px;
     padding-left: 10px;

@@ -13,4 +13,13 @@ defmodule KidsCheckin.PageView do
       _ -> "Open"
     end
   end
+
+  def open_close_abr(color, classes, location) do
+    case open_close(color, classes) do
+      "Full" when location == "left" -> "Fu"
+      "Full" -> "ll"
+      "Open" when location == "left" -> "Op"
+      _ -> "en"
+    end
+  end
 end
