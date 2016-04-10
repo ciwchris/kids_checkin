@@ -12,7 +12,7 @@ defmodule KidsCheckin.CheckinParse do
     newKids = Enum.filter(getCheckinsPage(page), fn checkin -> isToday(checkin["checked_in_at"], checkin["event"]["title"]) end)
 
     cond do
-      Enum.count(newKids) == 0 -> formatKids(kids)
+      Enum.count(newKids) == 0 -> updateCache mapKids(newKids, kids)
       !Map.has_key?(kids, hd(Enum.reverse newKids)["barcode"]) -> parse(mapKids(newKids, kids), (page + 1))
       true -> updateCache mapKids(newKids, kids)
     end
