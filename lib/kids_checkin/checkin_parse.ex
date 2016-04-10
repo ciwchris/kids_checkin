@@ -9,7 +9,7 @@ defmodule KidsCheckin.CheckinParse do
   end
 
   defp liveResults(kids, page) do
-    newKids = Enum.filter(getCheckinsPage(page), fn checkin -> isToday(checkin["checked_in_at"]) end)
+    newKids = Enum.filter(getCheckinsPage(page), fn checkin -> isToday(checkin["checked_in_at"], checkin["event"]["title"]) end)
 
     cond do
       Enum.count(newKids) == 0 -> formatKids(kids)
@@ -65,10 +65,10 @@ defmodule KidsCheckin.CheckinParse do
     Enum.filter(Map.values(kids), fn kid -> kid == id end) |> Enum.count
   end
 
-  defp isToday(startingDate) do
+  defp isToday(startingDate, title) do
     now = Timex.Date.local
     {_, fstart} = startingDate |> Timex.DateFormat.parse("{M}/{D}/{YYYY} {h12}:{m} {AM} ({Zname})")
-    fstart.day == now.day
+    fstart.day == now.day && title == "Sunday Gathering"
   end
 
 end
