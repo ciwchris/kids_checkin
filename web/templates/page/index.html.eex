@@ -5,8 +5,8 @@
     <li><div id="yellow" style="background-color:yellow"><%= open_close("yellow", @classes) %></div></li>
     <li><div id="green" style="background-color:green"><%= open_close("green", @classes) %></div></li>
     <li>
-      <div id="left" style="background-color:blue"><%= open_close_abr("older", @classes, "left") %></div>
-      <div id="right" style="background-color:purple"><%= open_close_abr("older", @classes, "right") %></div>
+      <div id="older" class="left" style="background-color:blue"><%= open_close_abr("older", @classes, "left") %></div>
+      <div id="older_right" class="right" style="background-color:purple"><%= open_close_abr("older", @classes, "right") %></div>
     </li>
   </ul>
 </div>

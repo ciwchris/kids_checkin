@@ -60,10 +60,16 @@ channel.on("count_update", payload => {
     var classes = JSON.parse(payload.classes);
     for (var i = 0; i < classes.length; i++) {
         if (isNaN($('#'+ classes[i].color).text())) {
+
             var text = classes[i].count < classes[i].max
                 ? "Open"
                 : "Full";
-            $('#'+ classes[i].color).text(text);
+            if (classes[i].color === 'older') {
+                $('#'+ classes[i].color).text(text.substr(0, 2));
+                $('#'+ classes[i].color + '_right').text(text.substr(2, 2));
+            } else {
+                $('#'+ classes[i].color).text(text);
+            }
         } else {
             $('#'+ classes[i].color).text(classes[i].count);
         }

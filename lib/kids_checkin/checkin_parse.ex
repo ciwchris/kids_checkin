@@ -2,17 +2,18 @@ defmodule KidsCheckin.CheckinParse do
   import Poison, only: [decode: 1]
 
   def parse(kids \\ %{}, page \\ 1) do
-    case Mix.env do
-      :prod -> liveResults kids, page
-      _ -> testResults kids, page
-    end
+    # case Mix.env do
+    #   :prod -> liveResults kids, page
+    #   _ -> testResults kids, page
+    # end
+    liveResults kids, page
   end
 
   defp liveResults(kids, page) do
     newKids = Enum.filter(getCheckinsPage(page), fn checkin -> isToday(checkin["checked_in_at"], checkin["event"]["title"]) end)
 
     cond do
-      Enum.count(newKids) == 0 -> updateCache mapKids(newKids, kids)
+      Enum.count(newKids) == 0 -> updateCache kids
       !Map.has_key?(kids, hd(Enum.reverse newKids)["barcode"]) -> parse(mapKids(newKids, kids), (page + 1))
       true -> updateCache mapKids(newKids, kids)
     end
