@@ -2,11 +2,10 @@ defmodule KidsCheckin.CheckinParse do
   import Poison, only: [decode: 1]
 
   def parse(kids \\ %{}, page \\ 1) do
-    # case Mix.env do
-    #   :prod -> liveResults kids, page
-    #   _ -> testResults kids, page
-    # end
-    liveResults kids, page
+    case Mix.env do
+      :prod -> liveResults kids, page
+      _ -> testResults kids, page
+    end
   end
 
   defp liveResults(kids, page) do
@@ -57,9 +56,9 @@ defmodule KidsCheckin.CheckinParse do
       %{"id" => 108119, "color" => "orange", "count" =>getCounts(kids, 108119), "max" => 12, "name" =>  "Toddlers"},
       %{"id" => 108120, "color" => "yellow", "count" =>getCounts(kids, 108120), "max" => 12, "name" =>  "Preschool #1"},
       %{"id" => 144673, "color" => "green", "count" =>getCounts(kids, 144673), "max" => 12, "name" =>  "Preschool # 2"},
-      %{"id" => 108123, "color" => "older", "count" => getCounts(kids, 108123) + getCounts(kids, 89515), "max" => 20, "name" =>  "Older"},
-      #%{"id" => 108123, "color" => "blue", "count" => getCounts(kids, 108123), "max" => 14, "name" =>  "Primary"},
-#      %{"id" => 89515, "color" => "purple", "count" => getCounts(kids, 89515), "max" => 16, "name" => "Elementary"}
+      %{"id" => 108123, "color" => "blue", "count" => getCounts(kids, 108123), "max" => 14, "name" =>  "Primary"},
+      %{"id" => 89515, "color" => "purple", "count" => getCounts(kids, 89515), "max" => 16, "name" => "Elementary"},
+      %{"id" => 108123, "color" => "combined", "count" => getCounts(kids, 108123) + getCounts(kids, 89515), "max" => 20, "name" =>  "Combined"},
     ]
   end
 

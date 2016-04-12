@@ -64,7 +64,7 @@ channel.on("count_update", payload => {
             var text = classes[i].count < classes[i].max
                 ? "Open"
                 : "Full";
-            if (classes[i].color === 'older') {
+            if (classes[i].color === 'combined') {
                 $('#'+ classes[i].color).text(text.substr(0, 2));
                 $('#'+ classes[i].color + '_right').text(text.substr(2, 2));
             } else {

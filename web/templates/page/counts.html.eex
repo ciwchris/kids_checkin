@@ -4,6 +4,8 @@
     <li><div id="orange" style="background-color:orange"><%= count("orange", @classes) %></div></li>
     <li><div id="yellow" style="background-color:yellow"><%= count("yellow", @classes) %></div></li>
     <li><div id="green" style="background-color:green"><%= count("green", @classes) %></div></li>
-    <li><div id="older" style="background-color:#40007f"><%= count("older", @classes) %></div></li>
+    <li><div id="blue" style="background-color:blue"><%= count("blue", @classes) %></div></li>
+    <li><div id="purple" style="background-color:purple"><%= count("purple", @classes) %></div></li>
+    <li><div id="combined" style="background-color:#40007f"><%= count("combined", @classes) %></div></li>
   </ul>
 </div>

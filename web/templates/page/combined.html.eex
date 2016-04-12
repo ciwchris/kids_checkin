@@ -4,7 +4,9 @@
     <li><div id="orange" style="background-color:orange"><%= open_close("orange", @classes) %></div></li>
     <li><div id="yellow" style="background-color:yellow"><%= open_close("yellow", @classes) %></div></li>
     <li><div id="green" style="background-color:green"><%= open_close("green", @classes) %></div></li>
-    <li><div id="blue" style="background-color:blue"><%= open_close("blue", @classes) %></div> </li>
-    <li><div id="purple" style="background-color:purple"><%= open_close("purple", @classes) %></div> </li>
+    <li>
+      <div id="combined" class="left" style="background-color:blue"><%= open_close_combined("combined", @classes, "left") %></div>
+      <div id="combined_right" class="right" style="background-color:purple"><%= open_close_combined("combined", @classes, "right") %></div>
+    </li>
   </ul>
 </div>
