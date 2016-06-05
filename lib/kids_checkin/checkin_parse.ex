@@ -57,7 +57,7 @@ defmodule KidsCheckin.CheckinParse do
       %{"id" => 108119, "color" => "orange", "count" => getCounts(kids, adjustment, 108119), "max" => 12, "name" =>  "Toddlers"},
       %{"id" => 108120, "color" => "yellow", "count" => getCounts(kids, adjustment, 108120), "max" => 12, "name" =>  "Preschool #1"},
       %{"id" => 144673, "color" => "green", "count" => getCounts(kids, adjustment, 144673), "max" => 12, "name" =>  "Preschool # 2"},
-      %{"id" => 108123, "color" => "blue", "count" => getCounts(kids, adjustment, 108123), "max" => 14, "name" =>  "Primary"},
+      %{"id" => 108123, "color" => "blue", "count" => getCounts(kids, adjustment, 108123), "max" => 16, "name" =>  "Primary"},
       %{"id" => 89515, "color" => "purple", "count" => getCounts(kids, adjustment, 89515), "max" => 16, "name" => "Elementary"},
       %{"id" => 108123, "color" => "combined", "count" => getCounts(kids, adjustment, 108123) + getCounts(kids, adjustment, 89515), "max" => 20, "name" =>  "Combined"},
     ]
