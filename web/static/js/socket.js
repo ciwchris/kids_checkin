@@ -3,9 +3,9 @@
 
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/my_app/endpoint.ex":
-import {Socket} from "phoenix"
+import {Socket} from 'phoenix';
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket('/socket', {params: {token: window.userToken}});
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -51,19 +51,17 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // Finally, pass the token on connect as below. Or remove it
 // from connect if you don't care about authentication.
 
-socket.connect()
+socket.connect();
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("checkins:count", {})
+let channel = socket.channel('checkins:count', {});
 
 channel.on("count_update", payload => {
-    var classes = JSON.parse(payload.classes);
+    let classes = JSON.parse(payload.classes);
     for (var i = 0; i < classes.length; i++) {
         if (isNaN($('#'+ classes[i].color).text())) {
 
-            var text = classes[i].count < classes[i].max
-                ? "Open"
-                : "Full";
+            var text = classes[i].count < classes[i].max ? 'Open' : 'Full';
             if (classes[i].color === 'combined') {
                 $('#'+ classes[i].color).text(text.substr(0, 2));
                 $('#'+ classes[i].color + '_right').text(text.substr(2, 2));
@@ -74,10 +72,47 @@ channel.on("count_update", payload => {
             $('#'+ classes[i].color).text(classes[i].count);
         }
     }
-})
+});
+
+$('#red-inc').on('click', event => {
+    channel.push('inc', {body: 108117});
+});
+$('#red-dec').on('click', event => {
+    channel.push('dec', {body: 108117});
+});
+$('#orange-inc').on('click', event => {
+    channel.push('inc', {body: 108119});
+});
+$('#orange-dec').on('click', event => {
+    channel.push('dec', {body: 108119});
+});
+$('#yellow-inc').on('click', event => {
+    channel.push('inc', {body: 108120});
+});
+$('#yellow-dec').on('click', event => {
+    channel.push('dec', {body: 108120});
+});
+$('#green-inc').on('click', event => {
+    channel.push('inc', {body: 144673});
+});
+$('#green-dec').on('click', event => {
+    channel.push('dec', {body: 144673});
+});
+$('#blue-inc').on('click', event => {
+    channel.push('inc', {body: 108123});
+});
+$('#blue-dec').on('click', event => {
+    channel.push('dec', {body: 108123});
+});
+$('#purple-inc').on('click', event => {
+    channel.push('inc', {body: 89515});
+});
+$('#purple-dec').on('click', event => {
+    channel.push('dec', {body: 89515});
+});
 
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+    .receive('ok', resp => { console.log('Joined successfully', resp); })
+    .receive('error', resp => { console.log('Unable to join', resp); });
 
-export default socket
+export default socket;

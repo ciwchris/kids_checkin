@@ -51,19 +51,20 @@ defmodule KidsCheckin.CheckinParse do
   end
 
   def formatKids(kids) do
+    adjustment = LruCache.get(:my_cache, "adjustment") || %{}
     [
-      %{"id" => 108117, "color" => "red", "count" => getCounts(kids, 108117), "max" => 12, "name" => "Nursery"},
-      %{"id" => 108119, "color" => "orange", "count" =>getCounts(kids, 108119), "max" => 12, "name" =>  "Toddlers"},
-      %{"id" => 108120, "color" => "yellow", "count" =>getCounts(kids, 108120), "max" => 12, "name" =>  "Preschool #1"},
-      %{"id" => 144673, "color" => "green", "count" =>getCounts(kids, 144673), "max" => 12, "name" =>  "Preschool # 2"},
-      %{"id" => 108123, "color" => "blue", "count" => getCounts(kids, 108123), "max" => 14, "name" =>  "Primary"},
-      %{"id" => 89515, "color" => "purple", "count" => getCounts(kids, 89515), "max" => 16, "name" => "Elementary"},
-      %{"id" => 108123, "color" => "combined", "count" => getCounts(kids, 108123) + getCounts(kids, 89515), "max" => 20, "name" =>  "Combined"},
+      %{"id" => 108117, "color" => "red", "count" => getCounts(kids, adjustment, 108117), "max" => 12, "name" => "Nursery"},
+      %{"id" => 108119, "color" => "orange", "count" => getCounts(kids, adjustment, 108119), "max" => 12, "name" =>  "Toddlers"},
+      %{"id" => 108120, "color" => "yellow", "count" => getCounts(kids, adjustment, 108120), "max" => 12, "name" =>  "Preschool #1"},
+      %{"id" => 144673, "color" => "green", "count" => getCounts(kids, adjustment, 144673), "max" => 12, "name" =>  "Preschool # 2"},
+      %{"id" => 108123, "color" => "blue", "count" => getCounts(kids, adjustment, 108123), "max" => 14, "name" =>  "Primary"},
+      %{"id" => 89515, "color" => "purple", "count" => getCounts(kids, adjustment, 89515), "max" => 16, "name" => "Elementary"},
+      %{"id" => 108123, "color" => "combined", "count" => getCounts(kids, adjustment, 108123) + getCounts(kids, adjustment, 89515), "max" => 20, "name" =>  "Combined"},
     ]
   end
 
-  defp getCounts(kids, id) do
-    Enum.filter(Map.values(kids), fn kid -> kid == id end) |> Enum.count
+  defp getCounts(kids, adjustment, id) do
+    (Enum.filter(Map.values(kids), fn kid -> kid == id end) |> Enum.count) + (Enum.filter(Map.values(adjustment), fn kid -> kid == id end) |> Enum.count)
   end
 
   defp isToday(startingDate, title) do
