@@ -22,16 +22,20 @@ li {
     justify-content: center;
 }
 
-li .inc {
+.counts li .inc {
     width: 50px;
     min-width: 50px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
+.counts li > div {
+    min-width: 120px;
+}
+
 li > div {
     text-shadow: 1px 1px 5px #000;
-    min-width: 140px;
+    min-width: 200px;
     padding: 6px 12px;
     font-size: 40pt;
     color: #FFF;

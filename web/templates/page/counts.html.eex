@@ -1,5 +1,5 @@
 <div>
-  <ul>
+  <ul class="counts">
     <li><div id="red-inc" class="inc">+</div><div id="red" style="background-color:red"><%= count("red", @classes) %></div><div class="inc" id="red-dec">-</div></li>
     <li><div id="orange-inc" class="inc">+</div><div id="orange" style="background-color:orange"><%= count("orange", @classes) %></div><div class="inc" id="orange-dec">-</div></li>
     <li><div id="yellow-inc" class="inc">+</div><div id="yellow" style="background-color:yellow"><%= count("yellow", @classes) %></div><div class="inc" id="yellow-dec">-</div></li>
