@@ -1,11 +1,11 @@
 <div>
   <ul class="counts">
-    <li><div id="red-inc" class="inc">+</div><div id="red" style="background-color:red"><%= count("red", @classes) %></div><div class="inc" id="red-dec">-</div></li>
-    <li><div id="orange-inc" class="inc">+</div><div id="orange" style="background-color:orange"><%= count("orange", @classes) %></div><div class="inc" id="orange-dec">-</div></li>
-    <li><div id="yellow-inc" class="inc">+</div><div id="yellow" style="background-color:yellow"><%= count("yellow", @classes) %></div><div class="inc" id="yellow-dec">-</div></li>
-    <li><div id="green-inc" class="inc">+</div><div id="green" style="background-color:green"><%= count("green", @classes) %></div><div class="inc" id="green-dec">-</div></li>
-    <li><div id="blue-inc" class="inc">+</div><div id="blue" style="background-color:blue"><%= count("blue", @classes) %></div><div class="inc" id="blue-dec">-</div></li>
-    <li><div id="purple-inc" class="inc">+</div><div id="purple" style="background-color:purple"><%= count("purple", @classes) %></div><div class="inc" id="purple-dec">-</div></li>
+    <li class="red"><div id="red-dec" class="inc">-</div><div id="red" style="background-color:red"><%= count("red", @classes) %></div><div class="inc" id="red-inc">+</div></li>
+    <li class="orange"><div id="orange-dec" class="inc">-</div><div id="orange" style="background-color:orange"><%= count("orange", @classes) %></div><div class="inc" id="orange-inc">+</div></li>
+    <li class="yellow"><div id="yellow-dec" class="inc">-</div><div id="yellow" style="background-color:yellow"><%= count("yellow", @classes) %></div><div class="inc" id="yellow-inc">+</div></li>
+    <li class="green"><div id="green-dec" class="inc">-</div><div id="green" style="background-color:green"><%= count("green", @classes) %></div><div class="inc" id="green-inc">+</div></li>
+    <li class="blue"><div id="blue-dec" class="inc">-</div><div id="blue" style="background-color:blue"><%= count("blue", @classes) %></div><div class="inc" id="blue-inc">+</div></li>
+    <li class="purple"><div id="purple-dec" class="inc">-</div><div id="purple" style="background-color:purple"><%= count("purple", @classes) %></div><div class="inc" id="purple-inc">+</div></li>
     <li><div id="combined" style="background-color:#40007f"><%= count("combined", @classes) %></div></li>
   </ul>
 </div>

@@ -33,6 +33,48 @@ li {
     min-width: 120px;
 }
 
+.red .inc {
+    color: red;
+    background-color: #fee;
+    text-shadow: 1px 1px 5px red;
+    border-color: red;
+}
+
+.orange .inc {
+    color: orange;
+    background-color: #fff6e5;
+    text-shadow: 1px 1px 5px orange;
+    border-color: orange;
+}
+
+.yellow .inc {
+    color: yellow;
+    background-color: #ffffe5;
+    text-shadow: 1px 1px 5px yellow;
+    border-color: yellow;
+}
+
+.green .inc {
+    color: green;
+    background-color: #e5f2e5;
+    text-shadow: 1px 1px 5px green;
+    border-color: green;
+}
+
+.blue .inc {
+    color: blue;
+    background-color: #e5e5ff;
+    text-shadow: 1px 1px 5px blue;
+    border-color: blue;
+}
+
+.purple .inc {
+    color: purple;
+    background-color: #f2e5f2;
+    text-shadow: 1px 1px 5px purple;
+    border-color: purple;
+}
+
 li > div {
     text-shadow: 1px 1px 5px #000;
     min-width: 200px;
